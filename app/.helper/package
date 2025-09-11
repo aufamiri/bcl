@@ -78,6 +78,11 @@ get_package_platform() {
         sed_opts="-nE"
     fi
 
+    # macOS with silicon chips need to download the darwin-x86-64 variant
+    if [[ $(uname -m) == 'arm64' ]]; then
+       echo "darwin-x86_64"
+    fi
+
     # Unlike package name and channel, platform can contain dashes, and thus
     # cannot be splitted with awk.
     echo "$1" | sed $sed_opts 's/^[a-zA-Z0-9]+-[a-zA-Z0-9.]+-[a-zA-Z0-9.]+-?(.*)$/\1/p'
