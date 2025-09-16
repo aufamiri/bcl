@@ -76,6 +76,7 @@ get_package_platform() {
     # macOS need to download the darwin-x86-64 variant
     if [[ $(uname -o) == 'Darwin' ]]; then
        echo "darwin-x86_64"
+       return
     fi
 
     local sed_opts="-nr"
